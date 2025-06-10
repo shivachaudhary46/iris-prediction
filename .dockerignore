@@ -1,0 +1,27 @@
+# python cache and compiled files 
+__pycache__/ # this is folder where python stores compiled versions of scripts
+*.pyc # these are compiled python file
+*.pyo # these are files used in older versions of python with optimizations
+
+# local virtual environmens
+myenv/
+.env/ # these are used to store db passwords and api keys
+# so we don't want to include in images for security reasons
+
+# git repository files 
+.git # these makes file large and this file exists of logg, commit history, branches or hidden repository
+.gitignore 
+
+# logs and temp files
+# *.log # avoid carrying debug logs into your image 
+# *.tmp
+
+# removing jupyter notebooks (if not needed in container)
+*.ipynb
+
+# if you copy the model seperately inside the container then you should exclude in here
+# ignoring model and data artifacts
+
+# remaining to ignore files such as 
+#*.mlruns/
+#*.mlartifact/

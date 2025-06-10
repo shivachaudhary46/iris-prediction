@@ -1,0 +1,91 @@
+2025-06-10 00:42:44 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.18.0.3:5000
+2025-06-10 00:42:44 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-10 00:44:13 - module 1 - DEBUG - inside home page of the app
+2025-06-10 00:44:13 - werkzeug - INFO - 192.168.65.1 - - [10/Jun/2025 00:44:13] "GET / HTTP/1.1" 200 -
+2025-06-10 00:44:28 - module 1 - DEBUG - inside home page of the app
+2025-06-10 00:44:28 - werkzeug - INFO - 192.168.65.1 - - [10/Jun/2025 00:44:28] "GET / HTTP/1.1" 200 -
+2025-06-10 00:44:34 - werkzeug - INFO - 192.168.65.1 - - [10/Jun/2025 00:44:34] "[31m[1mGET /predict HTTP/1.1[0m" 405 -
+2025-06-10 00:46:25 - module 1 - DEBUG - get the json data
+2025-06-10 00:46:25 - module 1 - DEBUG - converted json to string
+2025-06-10 00:46:25 - app - ERROR - Exception on /predict [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/redis/connection.py", line 385, in connect_check_health
+    sock = self.retry.call_with_retry(
+  File "/usr/local/lib/python3.10/site-packages/redis/retry.py", line 87, in call_with_retry
+    return do()
+  File "/usr/local/lib/python3.10/site-packages/redis/connection.py", line 386, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/usr/local/lib/python3.10/site-packages/redis/connection.py", line 797, in _connect
+    raise err
+  File "/usr/local/lib/python3.10/site-packages/redis/connection.py", line 781, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/app/app.py", line 40, in predict
+    if r.exists(input_data):
+  File "/usr/local/lib/python3.10/site-packages/redis/commands/core.py", line 1736, in exists
+    return self.execute_command("EXISTS", *names, keys=names)
+  File "/usr/local/lib/python3.10/site-packages/redis/client.py", line 623, in execute_command
+    return self._execute_command(*args, **options)
+  File "/usr/local/lib/python3.10/site-packages/redis/client.py", line 629, in _execute_command
+    conn = self.connection or pool.get_connection()
+  File "/usr/local/lib/python3.10/site-packages/redis/utils.py", line 191, in wrapper
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/redis/connection.py", line 1530, in get_connection
+    connection.connect()
+  File "/usr/local/lib/python3.10/site-packages/redis/connection.py", line 379, in connect
+    self.connect_check_health(check_health=True)
+  File "/usr/local/lib/python3.10/site-packages/redis/connection.py", line 391, in connect_check_health
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2025-06-10 00:46:25 - werkzeug - INFO - 192.168.65.1 - - [10/Jun/2025 00:46:25] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+2025-06-10 12:05:31 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+2025-06-10 12:05:31 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-10 12:06:51 - module 1 - DEBUG - get the json data
+2025-06-10 12:06:51 - module 1 - DEBUG - converted json to string
+2025-06-10 12:06:51 - app - ERROR - Exception on /predict [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.10/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.10/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/app/app.py", line 51, in predict
+    prediction = model.predict(input_data)[0]
+  File "/usr/local/lib/python3.10/site-packages/sklearn/ensemble/_forest.py", line 903, in predict
+    proba = self.predict_proba(X)
+  File "/usr/local/lib/python3.10/site-packages/sklearn/ensemble/_forest.py", line 945, in predict_proba
+    X = self._validate_X_predict(X)
+  File "/usr/local/lib/python3.10/site-packages/sklearn/ensemble/_forest.py", line 637, in _validate_X_predict
+    X = validate_data(
+  File "/usr/local/lib/python3.10/site-packages/sklearn/utils/validation.py", line 2975, in validate_data
+    _check_n_features(_estimator, X, reset=reset)
+  File "/usr/local/lib/python3.10/site-packages/sklearn/utils/validation.py", line 2839, in _check_n_features
+    raise ValueError(
+ValueError: X has 1 features, but RandomForestClassifier is expecting 4 features as input.
+2025-06-10 12:06:51 - werkzeug - INFO - 192.168.65.1 - - [10/Jun/2025 12:06:51] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+2025-06-10 14:04:52 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.19.0.3:5000
+2025-06-10 14:04:52 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
