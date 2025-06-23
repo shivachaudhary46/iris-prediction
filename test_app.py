@@ -7,7 +7,7 @@ def test_result():
     assert response_def.data==b"Welcome to Iris Flower prediction API"
 
     # testing with features [5.1, 3.3, 1.7, 0.5]
-    test_data={'features:' [5.1, 3.3, 1.7, 0.5]}
+    test_data={'features': [5.1, 3.3, 1.7, 0.5]}
 
     # predicting with post request
     response_predict = app.test_client().post(
