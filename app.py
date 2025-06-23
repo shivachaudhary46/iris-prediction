@@ -8,7 +8,7 @@ import os
 
 # load environment variables 
 MODEL_PATH = os.getenv("MODEL_PATH", "model.pkl")
-REDIS_HOST = os.getenv("REDIS_HOST", "127.0.0.1:8000")
+REDIS_HOST = os.getenv("REDIS_HOST", "127.0.0.1")
 REDIS_PORT = int(os.getenv("REDIS_PORT", 6379))
 
 log_dir = os.path.join(os.getcwd(), "logs")
